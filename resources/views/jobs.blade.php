@@ -13,5 +13,9 @@
         @empty
             <h1>No current jobs listed</h1>
         @endforelse
+
+        <div>
+            {{ $jobs->links() }}
+        </div>
     </div>
 </x-layout>
