@@ -7,10 +7,14 @@ Route::view('/', 'home');
 
 Route::view('/contact', 'contact');
 
-Route::get('/jobs', [JobController::class, 'index']);
-Route::post('/jobs', [JobController::class, 'store']);
-Route::get('/jobs/create', [JobController::class, 'create']);
-Route::get('/jobs/{job}', [JobController::class, 'show']);
-Route::get('/jobs/{job}/edit', [JobController::class, 'edit']);
-Route::patch('/jobs/{job}', [JobController::class, 'update']);
-Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
+// Route::controller(JobController::class)->prefix('jobs')->group(function() {
+//     Route::get('/', 'index');
+//     Route::post('/', 'store');
+//     Route::get('/create', 'create');
+//     Route::get('/{job}', 'show');
+//     Route::get('/{job}/edit', 'edit');
+//     Route::patch('/{job}', 'update');
+//     Route::delete('/{job}', 'destroy');
+// });
+
+Route::resource('jobs', JobController::class);
