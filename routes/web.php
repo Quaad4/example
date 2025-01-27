@@ -19,7 +19,7 @@ Route::get('/jobs/{job}/edit', [JobController::class, 'edit']);
 
 Route::patch('/jobs/{job}', [JobController::class, 'update']);
 
-Route::delete('/jobs/{job}', [JobController::class, 'delete']);
+Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
 
 Route::get('/contact', function () {
     return view('contact');
