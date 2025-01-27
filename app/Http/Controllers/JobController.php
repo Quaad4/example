@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
-use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
@@ -23,15 +22,15 @@ class JobController extends Controller
         return view('jobs.create');
     }
 
-    public function store(Request $request) {
-        $request->validate([
+    public function store() {
+        request()->validate([
             'title' => 'required|min:3',
             'salary' => 'required'
         ]);
     
         Job::create([
-            'title' => $request->input('title'),
-            'salary' => $request->input('salary'),
+            'title' => request('title'),
+            'salary' => request('salary'),
             'employer_id' => 1
         ]);
     
@@ -44,21 +43,21 @@ class JobController extends Controller
         ]);
     }
 
-    public function update(Job $job, Request $request) {
-        $request->validate([
+    public function update(Job $job) {
+        request()->validate([
             'title' => 'required|min:3',
             'salary' => 'required'
         ]);
     
         $job->update([
-            'title' => $request->input('title'),
-            'salary' => $request->input('salary'),
+            'title' => request('title'),
+            'salary' => request('salary'),
         ]);
         
         return redirect('jobs/' . $job->id);
     }
 
-    public function delete(Job $job) {
+    public function destroy(Job $job) {
         $job->delete();
 
         return redirect('jobs');
